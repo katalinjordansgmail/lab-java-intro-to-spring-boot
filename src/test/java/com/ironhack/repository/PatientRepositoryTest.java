@@ -27,8 +27,14 @@ class PatientRepositoryTest {
 
     @BeforeEach
     void setUp() {
+        List<Employee> employees = new ArrayList<>();
         Employee employee1 = new Employee(123,"cardiology", "John Smith", Status.OFF);
-        employeeRepository.save(employee1);
+        employees.add(employee1);
+        Employee employee2 = new Employee(456,"dermatology", "Blake Morrison", Status.ON);
+        employees.add(employee2);
+        Employee employee3 = new Employee(789,"oncology", "Brandon Green", Status.ON_CALL);
+        employees.add(employee3);
+        employeeRepository.saveAll(employees);
 
         List<Patient> patients = new ArrayList<>();
         Date birthDate1 = new Date(1989, 6, 11);
@@ -38,10 +44,10 @@ class PatientRepositoryTest {
         patient1.setAdmittedBy(employee1);
         patients.add(patient1);
         Date birthDate2 = new Date(1995, 9, 8);
-        Patient patient2 = new Patient(456, "Marc Williams", birthDate2, employee1);
+        Patient patient2 = new Patient(456, "Marc Williams", birthDate2, employee2);
         patients.add(patient2);
         Date birthDate3 = new Date(2005, 1, 29);
-        Patient patient3 = new Patient(789, "Eva Rodriguez", birthDate3, employee1);
+        Patient patient3 = new Patient(789, "Eva Rodriguez", birthDate3, employee3);
         patients.add(patient3);
         patientRepository.saveAll(patients);
     }
@@ -81,8 +87,11 @@ class PatientRepositoryTest {
         assertEquals(2, patients.size());
     }
 
+    @Test
+    public void testFindAllByAdmittedBy_Department() {
+        List<Patient> patients = patientRepository.findAllByAdmittedBy_Department("cardiology");
+        assertEquals(1, patients.size());
+    }
 }
 
-//    List<Patient> findAllByDateOfBirthRange(Date startDate, Date endDate);
-//    List<Patient> findAllByAdmittedBy_Department(String department);
 //    List<Patient> findAllByAdmittedBy_StatusOFF();

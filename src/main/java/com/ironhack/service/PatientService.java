@@ -29,10 +29,10 @@ public class PatientService {
         return patientRepository.findAllByDateOfBirthBetween(startDate, endDate);
     }
 
-//    public List<Patient> getAllByAdmittedByDepartment(String department) {
-//        return patientRepository.findAllByAdmittedBy_Department(department);
-//    }
-//
+    public List<Patient> getAllByAdmittedByDepartment(String department) {
+        return patientRepository.findAllByAdmittedBy_Department(department);
+    }
+
 //    public List<Patient> getAllByAdmittedByStatusOff() {
 //        return patientRepository.findAllByAdmittedBy_StatusOFF();
 //    }
