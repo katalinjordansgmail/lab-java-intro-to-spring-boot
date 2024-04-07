@@ -25,9 +25,9 @@ public class PatientService {
         return patientRepository.findByPatientId(patientId);
     }
 
-//    public List<Patient> findAllByDateOfBirthRange(Date startDate, Date endDate) {
-//        return patientRepository.findAllByDateOfBirthRange(startDate, endDate);
-//    }
+    public List<Patient> getAllByDateOfBirthBetween(Date startDate, Date endDate) {
+        return patientRepository.findAllByDateOfBirthBetween(startDate, endDate);
+    }
 
 //    public List<Patient> getAllByAdmittedByDepartment(String department) {
 //        return patientRepository.findAllByAdmittedBy_Department(department);

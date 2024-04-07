@@ -31,15 +31,17 @@ class PatientRepositoryTest {
         employeeRepository.save(employee1);
 
         List<Patient> patients = new ArrayList<>();
-        Date birthDate = new Date(1989, 6, 11);
+        Date birthDate1 = new Date(1989, 6, 11);
         patient1.setPatientId(123);
         patient1.setName("Juan Garcia");
-        patient1.setDateOfBirth(birthDate);
+        patient1.setDateOfBirth(birthDate1);
         patient1.setAdmittedBy(employee1);
         patients.add(patient1);
-        Patient patient2 = new Patient(456, "Marc Williams", birthDate, employee1);
+        Date birthDate2 = new Date(1995, 9, 8);
+        Patient patient2 = new Patient(456, "Marc Williams", birthDate2, employee1);
         patients.add(patient2);
-        Patient patient3 = new Patient(789, "Eva Rodriguez", birthDate, employee1);
+        Date birthDate3 = new Date(2005, 1, 29);
+        Patient patient3 = new Patient(789, "Eva Rodriguez", birthDate3, employee1);
         patients.add(patient3);
         patientRepository.saveAll(patients);
     }
@@ -71,6 +73,13 @@ class PatientRepositoryTest {
         assertFalse(patient.isPresent());
     }
 
+    @Test
+    public void testFindAllByDateOfBirthBetween() {
+        Date startDate = new Date(1980, 1, 1);
+        Date endDate = new Date(2000, 1, 1);
+        List<Patient> patients = patientRepository.findAllByDateOfBirthBetween(startDate, endDate);
+        assertEquals(2, patients.size());
+    }
 
 }
 
