@@ -4,6 +4,7 @@ import com.ironhack.model.Employee;
 import com.ironhack.model.Patient;
 import com.ironhack.model.enums.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -16,5 +17,5 @@ public interface PatientRepository extends JpaRepository<Patient, Integer> {
     Optional<Patient> findByPatientId(int patientId);
     List<Patient> findAllByDateOfBirthBetween(Date startDate, Date endDate);
     List<Patient> findAllByAdmittedBy_Department(String department);
-//    List<Patient> findAllByAdmittedBy_StatusOFF();
+    List<Patient> findAllByAdmittedBy_Status(Status status);
 }

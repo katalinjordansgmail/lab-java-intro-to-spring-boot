@@ -92,6 +92,10 @@ class PatientRepositoryTest {
         List<Patient> patients = patientRepository.findAllByAdmittedBy_Department("cardiology");
         assertEquals(1, patients.size());
     }
-}
 
-//    List<Patient> findAllByAdmittedBy_StatusOFF();
+    @Test
+    public void testFindAllByAdmittedBy_StatusOFF() {
+        List<Patient> patients = patientRepository.findAllByAdmittedBy_Status(Status.OFF);
+        assertEquals(1, patients.size());
+    }
+}

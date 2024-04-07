@@ -6,6 +6,7 @@ import com.ironhack.model.enums.Status;
 import com.ironhack.repository.EmployeeRepository;
 import com.ironhack.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -33,7 +34,9 @@ public class PatientService {
         return patientRepository.findAllByAdmittedBy_Department(department);
     }
 
-//    public List<Patient> getAllByAdmittedByStatusOff() {
-//        return patientRepository.findAllByAdmittedBy_StatusOFF();
-//    }
+
+
+    public List<Patient> getAllByAdmittedByStatus(Status status) {
+        return patientRepository.findAllByAdmittedBy_Status(status);
+    }
 }
